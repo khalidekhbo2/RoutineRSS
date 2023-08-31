@@ -1,0 +1,50 @@
+name: Update Routine
+
+on:
+  push:
+    branches: 
+      - main
+  schedule:
+    - cron: "*/5 * * * *" # Run every day at midnight
+
+jobs:
+  update-rss:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Rename rss_feed.xml to old
+      run: python rename.py
+    - name: Stage Change
+      run: |    
+          git add old_rss_feed.xml
+          
+    - name: Generate rss_feed.xml
+      run: python Code.py
+    
+    - name: Config Git
+      run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+    - name: Stage Change
+      run: |    
+          git add rss_feed.xml
+          
+    - name: Commit Change
+      run: git commit -m "Update RSS Feed"
+    - name: Push
+      run: |  
+          git push
+   
