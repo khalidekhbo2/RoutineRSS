@@ -1,0 +1,2 @@
+requests
+pytz==2021.1
