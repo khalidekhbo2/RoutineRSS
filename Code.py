@@ -30,7 +30,7 @@ item_title = SubElement(first_item, "title")
 item_title.text = formatted_date
 
 item_description = SubElement(first_item, "description")
-item_description.text = f"{current_day_name},\nLast Update: {formatted_time}"
+item_description.text = f"{current_day_name},<br>Last Update: {formatted_time}"
 
 
 # Define class routines for each day
