@@ -25,11 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
- #   - name: Rename rss_feed.xml to old
-  #    run: python rename.py
- #   - name: Stage Change
-   #   run: |    
-   #       git add old_rss_feed.xml
+    - name: Rename rss_feed.xml to old
+      run: python rename.py
+       
+    
           
     - name: Generate rss_feed.xml
       run: python Code.py
@@ -52,6 +51,7 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
+        git add old_rss_feed.xml
         git add rss_feed.xml
         git commit -m "Update RSS Feed" || true  # Continue even if there are no changes
         git push
