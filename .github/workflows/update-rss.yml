@@ -25,11 +25,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Rename rss_feed.xml to old
-      run: python rename.py
-    - name: Stage Change
-      run: |    
-          git add old_rss_feed.xml
+ #   - name: Rename rss_feed.xml to old
+  #    run: python rename.py
+ #   - name: Stage Change
+   #   run: |    
+   #       git add old_rss_feed.xml
           
     - name: Generate rss_feed.xml
       run: python Code.py
