@@ -16,11 +16,18 @@ is_past_afternoon = current_date_time_bd.hour >= 14 and current_date_time_bd.min
 rss = Element("rss", version="2.0")
 channel = SubElement(rss, "channel")
 
+# Set the title of the RSS feed to "Routine"
 title = SubElement(channel, "title")
-title.text = f"Class Routines - {current_date}"
+title.text = "Routine"
 
-description = SubElement(channel, "description")
-description.text = f"Class routines for {current_day_name}, {current_date}."
+# Add the current day as the first item
+first_item = SubElement(channel, "item")
+
+first_item_title = SubElement(first_item, "title")
+first_item_title.text = current_day_name
+
+first_item_description = SubElement(first_item, "description")
+first_item_description.text = f"{current_day_name}'s Routine"
 
 # Define class routines for each day
 class_routines = {
