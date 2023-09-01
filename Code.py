@@ -20,15 +20,16 @@ channel = SubElement(rss, "channel")
 title = SubElement(channel, "title")
 description = SubElement(channel, "description")
 
-if current_day_name == "Friday":
-    title.text = "Routine"
-    description.text = f"{current_day_name} - Holiday"
-else:
     title.text = f"Class Routines - {current_date}"
     description.text = f"Class routines for {current_day_name}, {current_date}."
 
 # Define class routines for each day
 class_routines = {
+
+    "Friday": [
+        {"name": "Holiday", "time": "All Day"},
+       
+        
     "Saturday": [
         {"name": "Orthosurgery/Urology", "time": "7:00AM - 8:00AM"},
         {"name": "Pharmacology", "time": "8:00AM - 9:00AM"},
@@ -93,15 +94,7 @@ if target_day and target_day in class_routines:
         class_description = SubElement(item, "description")
         class_description.text = class_info["time"]
 
-    # If it's Friday, add a "Holiday" item
-    if target_day == "Friday":
-        item = SubElement(channel, "item")
-
-        class_title = SubElement(item, "title")
-        class_title.text = "Holiday"
-
-        class_description = SubElement(item, "description")
-        class_description.text = "Enjoy your day off!"
+   
         
     # Convert the XML structure to a string
     rss_feed_str = tostring(rss, encoding="utf-8").decode("utf-8")
