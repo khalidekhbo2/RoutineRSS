@@ -2,6 +2,7 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 import datetime
 import pytz
 import subprocess
+import calendar
 
 # Get current date and day name in Bangladesh time
 bd_tz = pytz.timezone('Asia/Dhaka')
@@ -103,7 +104,14 @@ if target_day and target_day in class_routines:
 
         class_description = SubElement(item, "description")
         class_description.text = class_info["time"]
-
+# Add "Tomorrow's Routine" if it's past 2:30 PM
+    if is_past_afternoon:
+        next_day = (current_date_time_bd + datetime.timedelta(days=1)).strftime('%A')
+        item = SubElement(channel, "item")
+        item_title = SubElement(item, "title")
+        item_title.text = "Tomorrow's Routine"
+        item_description = SubElement(item, "description")
+        item_description.text = next_day
    
         
     # Convert the XML structure to a string
