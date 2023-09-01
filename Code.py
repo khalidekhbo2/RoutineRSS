@@ -90,6 +90,16 @@ class_routines = {
     ]
 }
 
+
+# Add "Tomorrow's Routine" if it's past 2:30 PM
+if is_past_afternoon:
+    next_day = (current_date_time_bd + datetime.timedelta(days=1)).strftime('%A')
+    item = SubElement(channel, "item")
+    item_title = SubElement(item, "title")
+    item_title.text = "Tomorrow's Routine"
+    item_description = SubElement(item, "description")
+    item_description.text = next_day
+
 # Determine the routines to add based on the time of day
 target_day = current_day_name if not is_past_afternoon else (current_date_time_bd + datetime.timedelta(days=1)).strftime('%A')
 
