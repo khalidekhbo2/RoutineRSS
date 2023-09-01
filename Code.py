@@ -8,6 +8,7 @@ bd_tz = pytz.timezone('Asia/Dhaka')
 current_date_time_bd = datetime.datetime.now(bd_tz)
 current_date = current_date_time_bd.strftime('%Y-%m-%d')
 current_day_name = current_date_time_bd.strftime('%A')
+formatted_date = current_date_time_bd.strftime('%B %d, %Y')  # e.g., "September 1, 2023"
 
 # Check if it's past 2:30 PM
 is_past_afternoon = current_date_time_bd.hour >= 14 and current_date_time_bd.minute >= 30
@@ -16,12 +17,19 @@ is_past_afternoon = current_date_time_bd.hour >= 14 and current_date_time_bd.min
 rss = Element("rss", version="2.0")
 channel = SubElement(rss, "channel")
 
-# Set the title and description based on the day
-title = SubElement(channel, "title")
-description = SubElement(channel, "description")
 
-title.text = f"Class Routines - {current_date}"
-description.text = f"Class routines for {current_day_name}, {current_date}."
+# Set the channel title to "Routine"
+title = SubElement(channel, "title")
+title.text = "Routine"
+
+# Set the first item as the current date and day name
+first_item = SubElement(channel, "item")
+
+item_title = SubElement(first_item, "title")
+item_title.text = formatted_date
+
+item_description = SubElement(first_item, "description")
+item_description.text = current_day_name
 
 # Define class routines for each day
 class_routines = {
