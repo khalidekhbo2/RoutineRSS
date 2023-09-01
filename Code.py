@@ -9,6 +9,7 @@ current_date_time_bd = datetime.datetime.now(bd_tz)
 current_date = current_date_time_bd.strftime('%Y-%m-%d')
 current_day_name = current_date_time_bd.strftime('%A')
 formatted_date = current_date_time_bd.strftime('%B %d, %Y')  # e.g., "September 1, 2023"
+formatted_time = current_date_time_bd.strftime('%I:%M %p')  # e.g., "03:45 PM"
 
 # Check if it's past 2:30 PM
 is_past_afternoon = current_date_time_bd.hour >= 14 and current_date_time_bd.minute >= 30
@@ -30,6 +31,10 @@ item_title.text = formatted_date
 
 item_description = SubElement(first_item, "description")
 item_description.text = current_day_name
+
+# Add last update time below the name of the date
+last_update = SubElement(first_item, "lastUpdate")
+last_update.text = f"Last Update: {formatted_time}"
 
 # Define class routines for each day
 class_routines = {
