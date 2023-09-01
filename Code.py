@@ -3,7 +3,6 @@ import datetime
 import pytz
 import subprocess
 
-
 # Get current date and day name in Bangladesh time
 bd_tz = pytz.timezone('Asia/Dhaka')
 current_date_time_bd = datetime.datetime.now(bd_tz)
@@ -105,7 +104,7 @@ if target_day and target_day in class_routines:
         class_description = SubElement(item, "description")
         class_description.text = class_info["time"]
 
-         
+   
         
     # Convert the XML structure to a string
     rss_feed_str = tostring(rss, encoding="utf-8").decode("utf-8")
