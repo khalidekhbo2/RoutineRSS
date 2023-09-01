@@ -95,6 +95,16 @@ if target_day and target_day in class_routines:
         class_description = SubElement(item, "description")
         class_description.text = class_info["time"]
 
+    # If it's Friday, add a "Holiday" item
+    if target_day == "Friday":
+        item = SubElement(channel, "item")
+
+        class_title = SubElement(item, "title")
+        class_title.text = "Holiday"
+
+        class_description = SubElement(item, "description")
+        class_description.text = "Enjoy your day off!"
+        
     # Convert the XML structure to a string
     rss_feed_str = tostring(rss, encoding="utf-8").decode("utf-8")
 
