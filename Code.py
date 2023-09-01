@@ -20,16 +20,16 @@ channel = SubElement(rss, "channel")
 title = SubElement(channel, "title")
 description = SubElement(channel, "description")
 
-    title.text = f"Class Routines - {current_date}"
-    description.text = f"Class routines for {current_day_name}, {current_date}."
+title.text = f"Class Routines - {current_date}"
+description.text = f"Class routines for {current_day_name}, {current_date}."
 
 # Define class routines for each day
 class_routines = {
 
     "Friday": [
-        {"name": "Holiday", "time": "All Day"},
+        {"name": "Holiday", "time": "All Day"}
        
-        
+    ],   
     "Saturday": [
         {"name": "Orthosurgery/Urology", "time": "7:00AM - 8:00AM"},
         {"name": "Pharmacology", "time": "8:00AM - 9:00AM"},
