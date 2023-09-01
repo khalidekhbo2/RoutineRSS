@@ -104,7 +104,8 @@ if target_day and target_day in class_routines:
 
         class_description = SubElement(item, "description")
         class_description.text = class_info["time"]
-# Add "Tomorrow's Routine" if it's past 2:30 PM
+
+    # Add "Tomorrow's Routine" if it's past 2:30 PM
     if is_past_afternoon:
         next_day = (current_date_time_bd + datetime.timedelta(days=1)).strftime('%A')
         item = SubElement(channel, "item")
