@@ -1,11 +1,11 @@
 name: Update Routine
 
-on:
-  push:
-    branches: 
-      - main
-  schedule:
-    - cron: "*/5 * * * *" # Run every day at midnight
+#on:
+#  push:
+ #   branches: 
+ #     - main
+#  schedule:
+ #   - cron: "*/5 * * * *" # Run every day at midnight
 
 jobs:
   update-rss:
